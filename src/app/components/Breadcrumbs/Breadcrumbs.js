@@ -15,13 +15,11 @@ export default function Breadcrumbs(){
                     let href= `/${pathNames.slice(0, key +1).join('/')}`;
                     let itemClass = paths === href ? "text-sky-900 underline" : "";
                         return (
-                            <>
-                                <li className={itemClass} key={key}>
-                                    <Link href={href}>
-                                        {item}
-                                    </Link>
-                                </li>
-                            </>
+                            <li className={itemClass} key={key}>
+                                <Link href={href}>
+                                    {item}
+                                </Link>
+                            </li>
                         )
                     }
                 )}
