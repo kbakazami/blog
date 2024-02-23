@@ -9,7 +9,7 @@ export default function RootLayout({ children }) {
         <body className="min-h-screen">
             <Navbar />
             <Breadcrumbs />
-            {children}
+                {children}
             <Footer />
         </body>
         </html>
