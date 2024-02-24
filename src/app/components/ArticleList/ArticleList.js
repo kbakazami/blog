@@ -6,7 +6,7 @@ export default async function ArticleList(){
     const { data } = await response.json();
 
     return(
-        <div>
+        <div className="flex flex-col gap-y-5">
             {data.posts.map((item, key) => (
                 <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
                     <img
