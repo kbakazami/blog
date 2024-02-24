@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default async function ArticleList(){
 
     const response = await fetch('http://localhost:3000/api/articles');
@@ -23,6 +25,11 @@ export default async function ArticleList(){
                         <p className="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
                             {item.body}
                         </p>
+                        <Link href={`/articles/${item.id}`}>
+                            <button className="button-primary">
+                                Voir
+                            </button>
+                        </Link>
                     </div>
                 </article>
             ))}
