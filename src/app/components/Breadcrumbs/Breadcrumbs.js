@@ -19,6 +19,7 @@ export default function Breadcrumbs(){
                                 <Link href={href}>
                                     {item}
                                 </Link>
+                                {pathNames.length !== key + 1 && "/"}
                             </li>
                         )
                     }
