@@ -1,17 +1,37 @@
-import {NextResponse} from "next/server";
+import prisma from "@/app/lib/prisma";
 
 export async function GET(request){
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
-    console.log(id);
 
-    const res = await fetch(`https://dummyjson.com/posts/${id}`, {
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    });
+    try {
+        const article = await prisma.article.findUnique({
+            where: {
+                id: parseInt(id)
+            }
+        })
 
-    const data = await res.json()
+        return Response.json(article);
+    }catch (e) {
+        return Response.json({message: "L'article n'a pas été trouvé !"}, {status: 404})
+    }
 
-    return NextResponse.json({ data });
+}
+
+export async function POST(request){
+    const body = await request.json();
+
+    try {
+        const article = await prisma.article.create({
+            data: {
+                title: body.title,
+                author: body.author,
+                content: body.content
+            }
+        });
+
+        return Response.json(article);
+    }catch (e) {
+        Response.json({message: "Impossible de créer un article !"})
+    }
 }
