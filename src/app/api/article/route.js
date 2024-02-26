@@ -8,6 +8,9 @@ export async function GET(request){
         const article = await prisma.article.findUnique({
             where: {
                 id: parseInt(id)
+            },
+            include: {
+                comments: true
             }
         })
 
